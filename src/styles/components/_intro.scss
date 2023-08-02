@@ -1,0 +1,22 @@
+.intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.intro-btn {
+    padding: 16px 58px;
+    background-color: #4D5B9E;
+    border: none;
+    color: white;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.intro-btn:hover {
+    opacity: 90%;
+}
