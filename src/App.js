@@ -13,6 +13,7 @@ function App() {
 
 
 
+
   function startQuiz(){
     setIsStarted(true)
   }
@@ -38,6 +39,17 @@ function App() {
     })))
 }, [])
 
+function handleClickAnswer(e) {
+  const allChecked = data.every(question => question.checked)
+  if(!allChecked){
+    setData(oldData => oldData.map(question => {
+      return question.id === e.target.dataset.questionId? 
+       {...question,
+         selected:e.target.id
+       }: {...question}
+     }))
+  }
+}
 
 
 
@@ -47,6 +59,7 @@ function App() {
         <Quiz
           key={nanoid()}
           questions = {data}
+          handleClickAnswer = {handleClickAnswer}
         />
         :
         <Intro 

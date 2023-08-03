@@ -3,7 +3,7 @@ import Answer from './Answer';
 
 
 
-function Question({ question}){
+function Question({ question, handleClickAnswer }){
 
   console.log(question)
 
@@ -19,6 +19,7 @@ function Question({ question}){
             answer={answer}
             correct={question.correct}
             checked={question.checked}
+            handleClickAnswer={handleClickAnswer}
           />
           )}
       </div>
