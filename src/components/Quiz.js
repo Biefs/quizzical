@@ -1,22 +1,18 @@
 import React from 'react';
+import Question from './Question'
 import "../styles/style.css"
 
 
-function Quiz() {
+function Quiz({ questions}) {
   
+  const allChecked = questions.every(question => question.checked)
+
   return (
     <div className='quiz'>
-      <div  className='container'>
-          <p className='question'>Select one answer.</p>
-          <div  className='answers'>
-          <span className='answer'>1</span>
-          <span className='answer'>2</span>
-          <span className='answer'>3</span>
-          <span className='answer'>4</span>
-          </div>
-        </div>
+      {questions.map(question => <Question question={question} key={question.id}/>)}
       <div className='btn-container'>
-        <button className="check">Check answers</button>
+        {allChecked && <p className='score'>{`You scored ${0+'/'+questions.length} correct answers`}</p>}
+        <button  className="check">{allChecked? 'Play again':'Check answers'}</button>
       </div>
     </div>
   );
