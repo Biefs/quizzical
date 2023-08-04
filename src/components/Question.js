@@ -5,8 +5,6 @@ import Answer from './Answer';
 
 function Question({ question, handleClickAnswer }){
 
-  console.log(question)
-
   return (
     <div data-selected={question.selected} className='container'>
       <p className='question'>{question.question}</p>
