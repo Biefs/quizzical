@@ -9,8 +9,8 @@ import suffleArray from './utils/suffleArray'
 function App() {
   const [isStarted, setIsStarted] = React.useState(false)
   const [data, setData] = React.useState([])
-
-
+  const [isEnd, setIsEnd] = React.useState(false)
+  const [result, setResult] = React.useState(0)
 
 
 
@@ -20,6 +20,13 @@ function App() {
 
 
 
+  function countResult(){
+    setResult(prev => {
+      let result = 0
+      data.forEach(e => e.selected === e.correct? result++:result)
+      return result
+    })
+  }
 
 
 
@@ -37,7 +44,7 @@ function App() {
         correct: e.correct_answer
       }
     })))
-}, [])
+}, [isEnd])
 
 function handleClickAnswer(e) {
   const allChecked = data.every(question => question.checked)
@@ -51,6 +58,13 @@ function handleClickAnswer(e) {
   }
 }
 
+function handleClickCheck(){
+  if (data.every(question => question.checked)){
+      setIsEnd(prev => !prev)
+    } else if(data.every(question => question.selected)){
+      setData(oldData => oldData.map(question => ({...question, checked:true})))
+      countResult()
+  }}
 
 
   return (
@@ -60,6 +74,8 @@ function handleClickAnswer(e) {
           key={nanoid()}
           questions = {data}
           handleClickAnswer = {handleClickAnswer}
+          check={handleClickCheck}
+          result={result}
         />
         :
         <Intro 
